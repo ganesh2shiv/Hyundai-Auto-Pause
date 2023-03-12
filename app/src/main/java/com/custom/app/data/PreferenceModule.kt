@@ -2,17 +2,12 @@ package com.custom.app.data
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.Build
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
+import androidx.preference.PreferenceManager
 import com.custom.app.util.Constant.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import timber.log.Timber
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -23,34 +18,7 @@ class PreferenceModule {
     @Provides
     @Singleton
     fun provideSharedPreferences(context: Context): SharedPreferences {
-        return try {
-            val masterKey = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                val keyGenParamSpec = KeyGenParameterSpec.Builder(
-                    MasterKey.DEFAULT_MASTER_KEY_ALIAS,
-                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                    .setKeySize(MasterKey.DEFAULT_AES_GCM_MASTER_KEY_SIZE)
-                    .build()
-                MasterKey.Builder(context)
-                    .setKeyGenParameterSpec(keyGenParamSpec)
-                    .build()
-            } else {
-                MasterKey.Builder(context)
-                    .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-                    .build()
-            }
-            EncryptedSharedPreferences.create(
-                context,
-                "preferences",
-                masterKey,
-                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-            )
-        } catch (e: Exception) {
-            Timber.e(e)
-            throw RuntimeException(e)
-        }
+        return PreferenceManager.getDefaultSharedPreferences(context)
     }
 
     @Provides

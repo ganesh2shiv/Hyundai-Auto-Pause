@@ -15,7 +15,6 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.custom.app.BuildConfig
 import com.custom.app.R
-import com.custom.app.data.CustomDataStore
 import com.custom.app.service.AutoPauseService
 import com.custom.app.service.NotificationHandler
 import com.custom.app.util.AlertUtil
@@ -63,8 +62,6 @@ class SettingFragment : PreferenceFragmentCompat(), SettingManager.ChangeListene
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.preferenceDataStore = CustomDataStore(prefs)
-
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
         serviceEnabledPreference = findPreference(KEY_SERVICE_ENABLED)!!
