@@ -1,0 +1,49 @@
+# Application
+*.apk
+*.ap_
+
+# Dalvik VM
+*.dex
+
+# Java
+*.class
+
+# Generated
+/bin
+/gen
+/out
+
+# Gradle
+/.gradle
+build
+
+# Local config
+/local.properties
+/keystore.properties
+
+# Proguard
+/proguard
+
+# Logs
+*.log
+
+# Android Studio
+/.navigation
+/captures
+
+# IntelliJ
+/.idea
+*.iml
+
+# Keystore
+*.jks
+
+# Json
+output.json
+
+# OSX
+.DS_Store
+
+.externalNativeBuild
+.cxx
+/common-db/schemas/

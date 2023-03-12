@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Hyundai Auto Pause</string>
+
+    <string name="default_device_name">i20</string>
+    <string name="default_uuid">a99abcc6-5bc1-11e7-907b-a6006ad3dba0</string>
+    <string name="msg_reset_default_confirm">Do you want to reset to default values?</string>
+
+    <!-- Preferences -->
+    <string name="pref_gen_title">General</string>
+    <string name="pref_gen_enable_service">Enable Service</string>
+    <string name="pref_gen_enable_service_on">Auto Pause service is enabled.</string>
+    <string name="pref_gen_enable_service_off">Auto Pause service is disabled.</string>
+    <string name="pref_gen_enable_reboot">Enable Reboot</string>
+    <string name="pref_gen_enable_reboot_on">Automatically start the service on reboot.</string>
+    <string name="pref_gen_enable_reboot_off">Don\'t automatically start the service on reboot.</string>
+    <string name="pref_gen_device_name">Device Name</string>
+    <string name="pref_gen_device_name_desc">Default paired device name</string>
+    <string name="pref_gen_uuid">Service UUID</string>
+    <string name="pref_gen_uuid_desc">Default service characteristic</string>
+    <string name="pref_gen_ignore_vol">Ignore Zero Volume</string>
+    <string name="pref_gen_ignore_vol_on">Don\'t automatically pause music on zero volume.</string>
+    <string name="pref_gen_ignore_vol_off">Automatically pause music on zero volume.</string>
+    <string name="pref_gen_reset">Reset Values</string>
+    <string name="pref_gen_reset_desc">Reset to default values.</string>
+
+    <string name="pref_app_title">Application</string>
+    <string name="pref_app_permission_setting">Permission Settings</string>
+    <string name="pref_app_permission_setting_desc">Allow or see app permissions.</string>
+    <string name="pref_app_notification_setting">Notification Settings</string>
+    <string name="pref_app_notification_setting_desc">Disable or hide app notifications.</string>
+    <string name="pref_app_version_desc">Made with ❤</string>
+
+    <!-- Quick Settings -->
+    <string name="qs_tile_enable_label">Auto Pause</string>
+    <string name="qs_tile_enable_subtitle_enabled">Enabled</string>
+    <string name="qs_tile_enable_subtitle_disabled">Disabled</string>
+    <string name="qs_tile_enable_state_enabled">Auto Pause service is enabled</string>
+    <string name="qs_tile_enable_state_disabled">Auto Pause service is disabled</string>
+
+    <string name="notif_channel_status_name">Status Notification</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_yes">Yes</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_restart">Restart</string>
+    <string name="btn_disable">Disable</string>
+
+    <string name="unknown_error_msg">Whoops! Some unknown error occurred!</string>
+    <string name="permission_error_msg">Please allow requested permissions!</string>
+    <string name="request_permission_msg">Please allow following permissions: \n\n• %s</string>
+
+</resources>

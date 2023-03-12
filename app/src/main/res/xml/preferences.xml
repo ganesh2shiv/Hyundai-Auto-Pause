@@ -1,0 +1,70 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <PreferenceCategory android:title="@string/pref_gen_title">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:icon="@drawable/ic_service"
+            android:key="service_enabled"
+            android:summaryOff="@string/pref_gen_enable_service_off"
+            android:summaryOn="@string/pref_gen_enable_service_on"
+            android:title="@string/pref_gen_enable_service" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:dependency="service_enabled"
+            android:icon="@drawable/ic_reboot"
+            android:key="reboot_enabled"
+            android:summaryOff="@string/pref_gen_enable_reboot_off"
+            android:summaryOn="@string/pref_gen_enable_reboot_on"
+            android:title="@string/pref_gen_enable_reboot" />
+
+        <EditTextPreference
+            android:defaultValue="@string/default_device_name"
+            android:icon="@drawable/ic_car"
+            android:key="device_name"
+            android:summary="@string/pref_gen_device_name_desc"
+            android:title="@string/pref_gen_device_name" />
+
+        <EditTextPreference
+            android:defaultValue="@string/default_uuid"
+            android:icon="@drawable/ic_bluetooth"
+            android:key="uuid"
+            android:summary="@string/pref_gen_uuid_desc"
+            android:title="@string/pref_gen_uuid" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_volume"
+            android:key="ignore_volume"
+            android:summaryOff="@string/pref_gen_ignore_vol_off"
+            android:summaryOn="@string/pref_gen_ignore_vol_on"
+            android:title="@string/pref_gen_ignore_vol" />
+
+        <Preference
+            android:icon="@drawable/ic_reset"
+            android:key="reset"
+            android:summary="@string/pref_gen_reset_desc"
+            android:title="@string/pref_gen_reset" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_app_title">
+        <Preference
+            android:icon="@drawable/ic_permission"
+            android:key="permission"
+            android:summary="@string/pref_app_permission_setting_desc"
+            android:title="@string/pref_app_permission_setting" />
+
+        <Preference
+            android:icon="@drawable/ic_notification"
+            android:key="notification"
+            android:summary="@string/pref_app_notification_setting_desc"
+            android:title="@string/pref_app_notification_setting" />
+
+        <Preference
+            android:enabled="false"
+            android:key="version"
+            android:layout="@layout/layout_version"
+            tools:summary="@string/pref_app_version_desc" />
+    </PreferenceCategory>
+</PreferenceScreen>
