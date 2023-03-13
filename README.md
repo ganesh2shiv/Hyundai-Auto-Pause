@@ -1,14 +1,14 @@
 Hyundai Auto Pause
 ====================
 
-Miss the pause button on your Hyundai i20's steering? This android app makes the existing mute button to also work as pause button while playing music on Android Auto.
+Do you miss the pause button on your Hyundai i20's steering? This android app enables the existing mute button to also work as pause button while playing music on Android Auto.
 It works by establishing a connection with the car's infotainment system using the classic bluetooth (not BLE) and observes the volume change/mute events.
 
 Screenshots
 -----------
 
-<img style="width:30%" src="/art/01.png"><img style="width:30%" src="/art/02.png"> <br/>
-<img style="width:30%" src="/art/03.png"> <img style="width:30%" src="/art/04.png">
+<img style="width:40%" src="/art/01.png"><img style="width:40%" src="/art/02.png"> <br/>
+<img style="width:40%" src="/art/03.png"> <img style="width:40%" src="/art/04.png">
 
 TODO
 ----
