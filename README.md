@@ -11,11 +11,11 @@ It works by establishing a connection with the car's infotainment system using t
 ## Screenshots
 
 <p align="center">
-    <img style="width:40%" src="/art/01.png"><img style="width:40%" src="/art/02.png"> <br/>
-    <img style="width:40%" src="/art/03.png"> <img style="width:40%" src="/art/04.png">
+    <img style="width:45%" src="/art/01.png"><img style="width:45%" src="/art/02.png"><br/>
+    <img style="width:45%" src="/art/03.png"><img style="width:45%" src="/art/04.png">
 </p>
 
-## TODO
+## To-do
 
 - [x] Test on all i20 (2020) variants
 - [ ] Test on other Hyundai/Kia models
@@ -46,4 +46,4 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 ```
 
-See [LICENSE](/LICENSE).
+See [LICENSE](/LICENSE)
