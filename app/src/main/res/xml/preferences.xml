@@ -50,13 +50,13 @@
 
     <PreferenceCategory android:title="@string/pref_app_title">
         <Preference
-            android:icon="@drawable/ic_permission"
+            android:icon="@drawable/ic_security"
             android:key="permission"
             android:summary="@string/pref_app_permission_setting_desc"
             android:title="@string/pref_app_permission_setting" />
 
         <Preference
-            android:icon="@drawable/ic_notification"
+            android:icon="@drawable/ic_bell"
             android:key="notification"
             android:summary="@string/pref_app_notification_setting_desc"
             android:title="@string/pref_app_notification_setting" />
