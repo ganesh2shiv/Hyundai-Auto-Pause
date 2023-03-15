@@ -61,6 +61,25 @@
             android:summary="@string/pref_app_notification_setting_desc"
             android:title="@string/pref_app_notification_setting" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_about_title">
+        <Preference
+            android:icon="@drawable/ic_code"
+            android:title="@string/pref_about_view_project">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/ganesh2shiv/hyundai-auto-pause" />
+        </Preference>
+
+        <Preference
+            android:icon="@drawable/ic_bug"
+            android:title="@string/pref_about_report_issue">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/ganesh2shiv/hyundai-auto-pause/issues/new" />
+        </Preference>
+
         <Preference
             android:enabled="false"
             android:key="version"

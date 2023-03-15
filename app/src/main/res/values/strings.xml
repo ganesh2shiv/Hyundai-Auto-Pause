@@ -28,6 +28,11 @@
     <string name="pref_app_permission_setting_desc">Allow or see app permissions.</string>
     <string name="pref_app_notification_setting">Notification Settings</string>
     <string name="pref_app_notification_setting_desc">Disable or hide app notifications.</string>
+
+    <!-- About -->
+    <string name="pref_about_title">About</string>
+    <string name="pref_about_view_project">View Project Page</string>
+    <string name="pref_about_report_issue">Report an Issue</string>
     <string name="pref_app_version_desc">Made with ❤</string>
 
     <!-- Quick Settings -->
