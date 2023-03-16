@@ -11,15 +11,16 @@ It works by establishing a connection with the car's infotainment system using t
 ## Screenshots
 
 <p align="center">
-    <img style="width:45%" src="/art/01.png"><img style="width:45%" src="/art/02.png"><br/>
-    <img style="width:45%" src="/art/03.png"><img style="width:45%" src="/art/04.png">
+    <img style="width:35%" src="/art/01.png"><img style="width:35%" src="/art/02.png"><br/><br/>
+    <img style="width:35%" src="/art/03.png"><img style="width:35%" src="/art/04.png">
 </p>
 
 ## To-do
 
 - [x] Test on all i20 (2020) variants
 - [ ] Test on other Hyundai/Kia models
-- [ ] Add logging/show toasts feature
+- [ ] Add more useful and cool features
+- [ ] Add tests and clean up code
 
 ## Contribute
 
