@@ -11,8 +11,8 @@ It works by establishing a connection with the car's infotainment system using t
 ## Screenshots
 
 <p align="center">
-    <img style="width:35%" src="/art/01.png"><img style="width:35%" src="/art/02.png"><br/><br/>
-    <img style="width:35%" src="/art/03.png"><img style="width:35%" src="/art/04.png">
+    <img style="width:40%" src="/art/01.png"><img style="width:40%" src="/art/02.png"><br/><br/>
+    <img style="width:40%" src="/art/03.png"><img style="width:40%" src="/art/04.png">
 </p>
 
 ## To-do
@@ -20,7 +20,7 @@ It works by establishing a connection with the car's infotainment system using t
 - [x] Test on all i20 (2020) variants
 - [ ] Test on other Hyundai/Kia models
 - [ ] Add more useful and cool features
-- [ ] Add tests and clean up code
+- [ ] Add some tests and cleanup the code
 
 ## Contribute
 
