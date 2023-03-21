@@ -1,0 +1,17 @@
+<resources>
+
+    <string-array name="pref_gen_default_device_entries">
+        <item>Hyundai i20</item>
+        <item>Hyundai i10</item>
+        <item>Hyundai Venue</item>
+        <item>Kia Sonet</item>
+    </string-array>
+
+    <string-array name="pref_gen_default_device_values">
+        <item>i20</item>
+        <item>i10</item>
+        <item>Venue</item>
+        <item>Sonet</item>
+    </string-array>
+
+</resources>

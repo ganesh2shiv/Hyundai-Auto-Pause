@@ -20,6 +20,7 @@ class SettingManager @Inject internal constructor(
     @Singleton @Named(KEY_IGNORE_VOLUME) private var ignoreVolumePref: BooleanPreference,
     @Singleton @Named(KEY_SERVICE_ENABLED) private var serviceEnabledPref: BooleanPreference,
     @Singleton @Named(KEY_REBOOT_ENABLED) private var rebootEnabledPref: BooleanPreference,
+    @Singleton @Named(KEY_DEFAULT_DEVICE) private var defaultDevicePref: StringPreference,
     @Singleton @Named(KEY_DEVICE_NAME) private var deviceNamePref: StringPreference,
     @Singleton @Named(KEY_UUID) private var uuIdPref: StringPreference
 ) : SharedPreferences.OnSharedPreferenceChangeListener {
@@ -87,6 +88,10 @@ class SettingManager @Inject internal constructor(
         rebootEnabledPref.set(status)
     }
 
+    fun defaultDevice(): String {
+        return defaultDevicePref.get()
+    }
+
     fun deviceName(): String {
         return deviceNamePref.get()
     }
@@ -106,6 +111,7 @@ class SettingManager @Inject internal constructor(
     fun clear() {
         serviceEnabledPref.delete()
         rebootEnabledPref.delete()
+        defaultDevicePref.delete()
         deviceStatusPref.delete()
         ignoreVolumePref.delete()
         deviceNamePref.delete()

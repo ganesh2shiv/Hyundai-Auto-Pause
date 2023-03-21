@@ -68,6 +68,8 @@ class AutoPauseService : Service(), AudioPlaybackMonitor.Listener {
         super.onCreate()
         Timber.d("Starting")
 
+        settings.setDeviceStatus(0)
+
         notifications.createChannels()
         playbackMonitor.addListener(this)
 
@@ -140,8 +142,8 @@ class AutoPauseService : Service(), AudioPlaybackMonitor.Listener {
     }
 
     private fun playPauseAudio(buffer: ByteArray?) {
+        Timber.d("Buffer: %s", buffer?.take(25)?.joinToString(", ", "[", "...]"))
         if (buffer != null && buffer.size > 5) {
-            Timber.d(buffer.take(25).joinToString(", ", "[", "...]"))
             val volume = buffer[5].toInt()
             Timber.d("Volume: ${volume/2}")
             if (volume in 0..90 && buffer[6].toInt() == 124) {
@@ -169,6 +171,7 @@ class AutoPauseService : Service(), AudioPlaybackMonitor.Listener {
     }
 
     private fun disconnect() {
+        settings.setDeviceStatus(0)
         bluetoothService.disconnect()
         Timber.d("Disconnect")
     }

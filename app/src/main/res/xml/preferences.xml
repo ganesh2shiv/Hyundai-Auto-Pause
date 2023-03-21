@@ -18,16 +18,24 @@
             android:summaryOn="@string/pref_gen_enable_reboot_on"
             android:title="@string/pref_gen_enable_reboot" />
 
+        <DropDownPreference
+            android:defaultValue="@string/default_device"
+            android:entries="@array/pref_gen_default_device_entries"
+            android:entryValues="@array/pref_gen_default_device_values"
+            android:icon="@drawable/ic_vehicle"
+            android:key="default_device"
+            android:summary="@string/pref_gen_default_device_desc"
+            android:title="@string/pref_gen_default_device" />
+
         <EditTextPreference
-            android:defaultValue="@string/default_device_name"
-            android:icon="@drawable/ic_car"
+            android:defaultValue="@string/default_device"
+            android:icon="@drawable/ic_bluetooth"
             android:key="device_name"
             android:summary="@string/pref_gen_device_name_desc"
             android:title="@string/pref_gen_device_name" />
 
         <EditTextPreference
             android:defaultValue="@string/default_uuid"
-            android:icon="@drawable/ic_bluetooth"
             android:key="uuid"
             android:summary="@string/pref_gen_uuid_desc"
             android:title="@string/pref_gen_uuid" />

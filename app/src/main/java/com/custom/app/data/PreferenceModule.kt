@@ -25,14 +25,21 @@ class PreferenceModule {
     @Named(KEY_SERVICE_ENABLED)
     @Singleton
     fun provideServiceEnabled(prefs: SharedPreferences): BooleanPreference {
-        return BooleanPreference(prefs, KEY_SERVICE_ENABLED)
+        return BooleanPreference(prefs, KEY_SERVICE_ENABLED, true)
     }
 
     @Provides
     @Named(KEY_REBOOT_ENABLED)
     @Singleton
     fun provideRebootEnabled(prefs: SharedPreferences): BooleanPreference {
-        return BooleanPreference(prefs, KEY_REBOOT_ENABLED)
+        return BooleanPreference(prefs, KEY_REBOOT_ENABLED, true)
+    }
+
+    @Provides
+    @Named(KEY_DEFAULT_DEVICE)
+    @Singleton
+    fun provideDefaultDevice(prefs: SharedPreferences): StringPreference {
+        return StringPreference(prefs, KEY_DEFAULT_DEVICE, DeviceModel.i20.name)
     }
 
     @Provides

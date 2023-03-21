@@ -15,6 +15,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.custom.app.BuildConfig
 import com.custom.app.R
+import com.custom.app.data.DeviceModel
 import com.custom.app.service.AutoPauseService
 import com.custom.app.service.NotificationHandler
 import com.custom.app.util.AlertUtil
@@ -74,8 +75,27 @@ class SettingFragment : PreferenceFragmentCompat(), SettingManager.ChangeListene
         resetPreference = findPreference(KEY_RESET)!!
         versionPreference = findPreference(KEY_VERSION)!!
 
-        updateDeviceName()
-        updateUuid()
+        deviceNamePreference.setOnPreferenceChangeListener { _, newValue ->
+            if (!TextUtils.isEmpty(newValue.toString())) {
+                settings.deviceName(newValue.toString())
+                true
+            } else {
+                AlertUtil.showToast(context, "Invalid name!")
+                false
+            }
+        }
+
+        uuidPreference.setOnPreferenceChangeListener { _, newValue ->
+            try {
+                val uuId = newValue.toString()
+                UUID.fromString(uuId)
+                settings.uuId(uuId)
+                true
+            } catch (e: Exception) {
+                AlertUtil.showToast(context, "Invalid format!")
+                false
+            }
+        }
 
         resetPreference.setOnPreferenceClickListener {
             AlertUtil.showActionAlertDialog(
@@ -84,6 +104,7 @@ class SettingFragment : PreferenceFragmentCompat(), SettingManager.ChangeListene
                 getString(R.string.btn_cancel), getString(R.string.btn_yes)
             ) { _, _ ->
                 AlertUtil.showToast(context, "Reset to default!")
+                AutoPauseService.stop(requireContext())
                 settings.clear()
                 callback?.onRestartApp()
             }
@@ -141,6 +162,7 @@ class SettingFragment : PreferenceFragmentCompat(), SettingManager.ChangeListene
 
     override fun onSettingsChanged(key: String) {
         when (key) {
+            KEY_DEFAULT_DEVICE -> { updateDeviceName(); updateUuid() }
             KEY_SERVICE_ENABLED -> updateServiceState()
             KEY_REBOOT_ENABLED -> updateRebootState()
             KEY_IGNORE_VOLUME -> updateIgnoreVolume()
@@ -166,28 +188,13 @@ class SettingFragment : PreferenceFragmentCompat(), SettingManager.ChangeListene
     }
 
     private fun updateDeviceName() {
-        deviceNamePreference.setOnPreferenceChangeListener { _, newValue ->
-            if (!TextUtils.isEmpty(newValue.toString())) {
-                settings.deviceName(newValue.toString())
-                true
-            } else {
-                AlertUtil.showToast(context, "Invalid name!")
-                false
-            }
-        }
+        deviceNamePreference.text = DeviceModel.from(settings.defaultDevice()).model
     }
 
     private fun updateUuid() {
-        uuidPreference.setOnPreferenceChangeListener { _, newValue ->
-            try {
-                val uuId = newValue.toString()
-                UUID.fromString(uuId)
-                settings.uuId(uuId)
-                true
-            } catch (e: Exception) {
-                AlertUtil.showToast(context, "Invalid format!")
-                false
-            }
+        val uuid = DeviceModel.from(settings.defaultDevice()).uuid
+        if (!TextUtils.isEmpty(uuid)) {
+            uuidPreference.text = uuid
         }
     }
 

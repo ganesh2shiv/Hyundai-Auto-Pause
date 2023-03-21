@@ -1,7 +1,8 @@
 <resources>
+
     <string name="app_name">Hyundai Auto Pause</string>
 
-    <string name="default_device_name">i20</string>
+    <string name="default_device">i20</string>
     <string name="default_uuid">a99abcc6-5bc1-11e7-907b-a6006ad3dba0</string>
     <string name="msg_reset_default_confirm">Do you want to reset to default values?</string>
 
@@ -13,6 +14,8 @@
     <string name="pref_gen_enable_reboot">Enable Reboot</string>
     <string name="pref_gen_enable_reboot_on">Automatically start the service on reboot.</string>
     <string name="pref_gen_enable_reboot_off">Don\'t automatically start the service on reboot.</string>
+    <string name="pref_gen_default_device">Default Device</string>
+    <string name="pref_gen_default_device_desc">%1$s is selected</string>
     <string name="pref_gen_device_name">Device Name</string>
     <string name="pref_gen_device_name_desc">Default paired device name</string>
     <string name="pref_gen_uuid">Service UUID</string>
