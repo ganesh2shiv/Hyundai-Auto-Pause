@@ -76,8 +76,8 @@ class NotificationHandler @Inject internal constructor(
             addAction(
                 buildAction(
                     R.drawable.ic_pause,
-                    R.string.btn_restart,
-                    AutoPauseService.ACTION_RESTART
+                    R.string.btn_reconnect,
+                    AutoPauseService.ACTION_RECONNECT
                 )
             )
             addAction(

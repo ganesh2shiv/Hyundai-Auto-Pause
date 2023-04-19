@@ -6,7 +6,13 @@ enum class DeviceModel(val model: String, val uuid: String) {
 
     i10("Grand i10", "a99abcc6-5bc1-11e7-907b-a6006ad3dba0"),
 
+    Verna("Verna", "a99abcc6-5bc1-11e7-907b-a6006ad3dba0"),
+
     Venue("Venue", ""),
+
+    Creta("Creta", ""),
+
+    Seltos("Kia", ""),
 
     Sonet("Kia", "be90b6d9-aeae-4d8d-b92b-615250f08ab9");
 

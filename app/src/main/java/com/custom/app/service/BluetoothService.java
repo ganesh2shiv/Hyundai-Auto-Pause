@@ -71,40 +71,20 @@ public class BluetoothService {
      *	or {@link #SOCKET_NOT_FOUND} .
      *	If you want to interrupt connect method you have the option to switch on connect timeout feature.
      *  @param deviceAddress - Bluetooth device mac address
-     *  @param isSecureConnection - true if you want data encrypted
      *  @param connectionListener - Connection listener, you can check all the bluetooth connection state with this listener
      *  @param receiveListener - Receive listener, you can read data with this listener
      *  @return true if connect method run successfully
      */
-    public boolean connect(String deviceAddress, String uuid, boolean isSecureConnection, onConnectionListener connectionListener,
+    public boolean connect(String deviceAddress, String uuid, onConnectionListener connectionListener,
                            onReceiveListener receiveListener) {
         boolean isSuccess = false;
         if (connectThread == null) {
             this.connectionListener = connectionListener;
-            connectThread = new ConnectThread(deviceAddress, UUID.fromString(uuid), isSecureConnection, connectionListener, receiveListener);
+            connectThread = new ConnectThread(deviceAddress, UUID.fromString(uuid), connectionListener, receiveListener);
             connectThread.start();
             isSuccess = true;
         }
         return isSuccess;
-    }
-
-    /**
-     *  connect method is used to connect bluetooth device.
-     *  <p>Note : Don't interrupt with connect method till it gives response to {@link #CONNECTED} or {@link #CONNECT_FAILED}
-     *  or {@link #SOCKET_NOT_FOUND} .
-     *  If you want to interrupt connect method you have the option to switch on connect timeout feature.
-     *  @param device - Bluetooth device
-     *  @param isSecureConnection - true if you want data encrypted
-     *  @param connectionListener - Connection listener, you can check all the bluetooth connection state with this listener
-     *  @param receiveListener - Receive listener, you can read data with this listener
-     *  @return true if connect method run successfully
-     */
-    public boolean connect(BluetoothDevice device, String uuid, boolean isSecureConnection, onConnectionListener connectionListener,
-                           onReceiveListener receiveListener) {
-        if (device != null) {
-            return this.connect(device.getAddress(), uuid, isSecureConnection, connectionListener, receiveListener);
-        }
-        return false;
     }
 
     public void disconnect() {
@@ -225,33 +205,30 @@ public class BluetoothService {
         private onConnectionListener connectionListener;
         private final Handler timeoutHandler = new Handler(Looper.getMainLooper()); // connection timeout handler
 
-        public ConnectThread(String deviceAddress, UUID uuid, boolean isSecureConnection, onConnectionListener connectionListener,
+        public ConnectThread(String deviceAddress, UUID uuid, onConnectionListener connectionListener,
                              onReceiveListener receiveListener) {
             this.connectionListener = connectionListener; // initialize bluetooth connection listener
             this.receiveListener = receiveListener; // initialize bluetooth received listener
             btAdapter = BluetoothAdapter.getDefaultAdapter(); // get Bluetooth default Adapter
-            mSocket = createBluetoothSocket(deviceAddress, uuid, isSecureConnection); // create bluetooth socket
+            mSocket = createBluetoothSocket(deviceAddress, uuid); // create bluetooth socket
         }
 
         private BluetoothDevice getRemoteDevice(String deviceAddress) {
             try {
                 return btAdapter.getRemoteDevice(deviceAddress);
             } catch (Exception e) {
+                Timber.e(e);
                 return null;
             }
         }
 
-        private BluetoothSocket createBluetoothSocket(String deviceAddress, UUID uuid, boolean isSecureConnection) {
+        private BluetoothSocket createBluetoothSocket(String deviceAddress, UUID uuid) {
             BluetoothSocket socket = null;
             try {
                 if (btAdapter != null) {
                     BluetoothDevice device = getRemoteDevice(deviceAddress);
                     if (device != null) {
-                        if (isSecureConnection) {
-                            socket = device.createRfcommSocketToServiceRecord(uuid);
-                        } else {
-                            socket = device.createInsecureRfcommSocketToServiceRecord(uuid);
-                        }
+                        socket = device.createRfcommSocketToServiceRecord(uuid);
                     }
                 }
             } catch (Exception e) {
@@ -282,6 +259,7 @@ public class BluetoothService {
                     registerBroadcastReceiver();
                     setConnectionStateChangedListenerResult(this.connectionListener, CONNECTED);
                 } catch (Exception e) {
+                    Timber.e(e);
                     closeSocket();
                     setConnectionFailedListenerResult(this.connectionListener, CONNECT_FAILED);
                     isConnected = false;

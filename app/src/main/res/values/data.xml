@@ -3,14 +3,20 @@
     <string-array name="pref_gen_default_device_entries">
         <item>Hyundai i20</item>
         <item>Hyundai i10</item>
+        <item>Hyundai Verna</item>
         <item>Hyundai Venue</item>
+        <item>Hyundai Creta</item>
+        <item>Kia Seltos</item>
         <item>Kia Sonet</item>
     </string-array>
 
     <string-array name="pref_gen_default_device_values">
         <item>i20</item>
         <item>i10</item>
+        <item>Verna</item>
         <item>Venue</item>
+        <item>Creta</item>
+        <item>Seltos</item>
         <item>Sonet</item>
     </string-array>
 

@@ -8,8 +8,11 @@ import android.content.Context
 import android.content.Intent
 import android.media.AudioFocusRequest
 import android.media.AudioManager
+import android.os.Build
 import android.os.IBinder
 import com.custom.app.monitor.AudioPlaybackMonitor
+import com.custom.app.service.BluetoothService.onConnectionListener
+import com.custom.app.service.BluetoothService.onReceiveListener
 import com.custom.app.ui.setting.SettingManager
 import com.custom.app.util.AlertUtil
 import com.custom.app.util.Constant.NOTIFICATION_STATUS_ID
@@ -21,7 +24,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 @SuppressLint("MissingPermission")
-class AutoPauseService : Service(), AudioPlaybackMonitor.Listener {
+class AutoPauseService : Service(), onConnectionListener, onReceiveListener, AudioPlaybackMonitor.Listener {
 
     @Inject
     lateinit var settings: SettingManager
@@ -46,7 +49,7 @@ class AutoPauseService : Service(), AudioPlaybackMonitor.Listener {
 
     companion object {
         const val EXTRA_BOOT = "com.custom.app.extra.BOOT"
-        const val ACTION_RESTART = "com.custom.app.action.RESTART"
+        const val ACTION_RECONNECT = "com.custom.app.action.RECONNECT"
         const val ACTION_DISABLE = "com.custom.app.action.DISABLE"
 
         fun start(context: Context, boot: Boolean = false) {
@@ -76,46 +79,7 @@ class AutoPauseService : Service(), AudioPlaybackMonitor.Listener {
         val statusNotification = notifications.createStatusNotification()
         startForeground(NOTIFICATION_STATUS_ID, statusNotification)
 
-        val connectionListener = object : BluetoothService.onConnectionListener {
-            override fun onConnectionStateChanged(state: Int) {
-                when (state) {
-                    BluetoothService.DISCONNECTED -> settings.setDeviceStatus(0)
-                    BluetoothService.CONNECTING -> settings.setDeviceStatus(1)
-                    BluetoothService.CONNECTED -> settings.setDeviceStatus(2)
-                }
-                updateStatusNotification()
-            }
-
-            override fun onConnectionFailed(errorCode: Int) {
-                when (errorCode) {
-                    BluetoothService.SOCKET_NOT_FOUND -> {
-                        Timber.d("Socket not found")
-                    }
-                    BluetoothService.CONNECT_FAILED -> {
-                        Timber.d("Connect Failed")
-                    }
-                }
-                settings.setDeviceStatus(0)
-                updateStatusNotification()
-            }
-        }
-
-        val receiveListener = BluetoothService.onReceiveListener { buffer ->
-            playPauseAudio(buffer)
-        }
-
-        if (Util.isPermissionGranted(applicationContext, Manifest.permission.BLUETOOTH_CONNECT)) {
-            val devices = bluetoothManager.adapter.bondedDevices
-            if (devices.isNotEmpty()) {
-                val car = devices.singleOrNull { it.name.equals(settings.deviceName()) }
-                if (car != null) {
-                    val uuid = settings.uuId()
-                    bluetoothService.connect(car, uuid, true, connectionListener, receiveListener)
-                }
-            }
-        } else {
-            Timber.e("Permission error")
-        }
+        connect()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -126,9 +90,8 @@ class AutoPauseService : Service(), AudioPlaybackMonitor.Listener {
                 Timber.d("System rebooted!")
             } else if (intent.action != null) {
                 when (intent.action) {
-                    ACTION_RESTART -> {
-                        stop(this)
-                        start(this)
+                    ACTION_RECONNECT -> {
+                        connect()
                     }
                     ACTION_DISABLE -> {
                         settings.serviceEnabled(false)
@@ -141,7 +104,48 @@ class AutoPauseService : Service(), AudioPlaybackMonitor.Listener {
         return START_STICKY
     }
 
-    private fun playPauseAudio(buffer: ByteArray?) {
+    private fun connect() {
+        if (bluetoothManager.adapter != null && bluetoothManager.adapter.isEnabled) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+                !Util.isPermissionGranted(applicationContext, Manifest.permission.BLUETOOTH_CONNECT)) {
+                AlertUtil.showToast(this, "Please allow required permission!")
+                return
+            }
+
+            val devices = bluetoothManager.adapter.bondedDevices
+            if (devices.isNotEmpty()) {
+                val car = devices.find { it.name.equals(settings.deviceName()) }
+                if (car != null) {
+                    val uuid = settings.uuId()
+                    bluetoothService.connect(car.address, uuid, this, this)
+                } else {
+                    AlertUtil.showToast(this, "Please connect the bluetooth!")
+                }
+            }
+        } else {
+            AlertUtil.showToast(this, "Please turn on the bluetooth!")
+        }
+    }
+
+    override fun onConnectionStateChanged(state: Int) {
+        when (state) {
+            BluetoothService.DISCONNECTED -> disconnect()
+            BluetoothService.CONNECTING -> settings.setDeviceStatus(1)
+            BluetoothService.CONNECTED -> settings.setDeviceStatus(2)
+        }
+        updateStatusNotification()
+    }
+
+    override fun onConnectionFailed(errorCode: Int) {
+        when (errorCode) {
+            BluetoothService.SOCKET_NOT_FOUND -> Timber.d("Socket not found")
+            BluetoothService.CONNECT_FAILED -> Timber.d("Connect failed")
+        }
+        disconnect()
+        updateStatusNotification()
+    }
+
+    override fun onReceived(buffer: ByteArray?) {
         Timber.d("Buffer: %s", buffer?.take(25)?.joinToString(", ", "[", "...]"))
         if (buffer != null && buffer.size > 5) {
             val volume = buffer[5].toInt()
@@ -178,7 +182,7 @@ class AutoPauseService : Service(), AudioPlaybackMonitor.Listener {
 
     override fun onDestroy() {
         super.onDestroy()
-        Timber.d("Stopping")
+        Timber.d("Destroy")
 
         disconnect()
         playbackMonitor.removeListener(this)

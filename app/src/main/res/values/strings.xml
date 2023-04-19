@@ -50,11 +50,11 @@
     <string name="btn_ok">OK</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_cancel">Cancel</string>
-    <string name="btn_restart">Restart</string>
+    <string name="btn_reconnect">Reconnect</string>
     <string name="btn_disable">Disable</string>
 
     <string name="unknown_error_msg">Whoops! Some unknown error occurred!</string>
     <string name="permission_error_msg">Please allow requested permissions!</string>
-    <string name="request_permission_msg">Please allow following permissions: \n\n• %s</string>
+    <string name="request_permission_msg">Please allow following permissions: \n\n%s</string>
 
 </resources>
