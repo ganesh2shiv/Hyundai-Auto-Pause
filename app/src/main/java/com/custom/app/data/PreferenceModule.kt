@@ -3,7 +3,13 @@ package com.custom.app.data
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
-import com.custom.app.util.Constant.*
+import com.custom.app.util.Constant.KEY_DEFAULT_DEVICE
+import com.custom.app.util.Constant.KEY_DEVICE_NAME
+import com.custom.app.util.Constant.KEY_DEVICE_STATUS
+import com.custom.app.util.Constant.KEY_IGNORE_VOLUME
+import com.custom.app.util.Constant.KEY_REBOOT_ENABLED
+import com.custom.app.util.Constant.KEY_SERVICE_ENABLED
+import com.custom.app.util.Constant.KEY_UUID
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

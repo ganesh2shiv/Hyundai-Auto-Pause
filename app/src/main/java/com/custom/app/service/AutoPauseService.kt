@@ -154,12 +154,12 @@ class AutoPauseService : Service(), onConnectionListener, onReceiveListener, Aud
                 if (volume == 1 || (!settings.ignoreVolume() && volume == 0)) {
                     if (audioManager.isMusicActive) {
                         audioManager.requestAudioFocus(audioRequest)
-                        AlertUtil.showToast(applicationContext, "Paused...")
+                        AlertUtil.showToast(this, "Paused...")
                     }
                 } else {
                     if (!audioManager.isMusicActive) {
                         audioManager.abandonAudioFocus(null)
-                        AlertUtil.showToast(applicationContext, "Playing...")
+                        AlertUtil.showToast(this, "Playing...")
                     }
                 }
             }

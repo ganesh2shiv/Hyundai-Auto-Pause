@@ -7,7 +7,13 @@ import com.custom.app.R
 import com.custom.app.data.BooleanPreference
 import com.custom.app.data.IntPreference
 import com.custom.app.data.StringPreference
-import com.custom.app.util.Constant.*
+import com.custom.app.util.Constant.KEY_DEFAULT_DEVICE
+import com.custom.app.util.Constant.KEY_DEVICE_NAME
+import com.custom.app.util.Constant.KEY_DEVICE_STATUS
+import com.custom.app.util.Constant.KEY_IGNORE_VOLUME
+import com.custom.app.util.Constant.KEY_REBOOT_ENABLED
+import com.custom.app.util.Constant.KEY_SERVICE_ENABLED
+import com.custom.app.util.Constant.KEY_UUID
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton

@@ -19,7 +19,17 @@ import com.custom.app.data.DeviceModel
 import com.custom.app.service.AutoPauseService
 import com.custom.app.service.NotificationHandler
 import com.custom.app.util.AlertUtil
-import com.custom.app.util.Constant.*
+import com.custom.app.util.Constant.KEY_DEFAULT_DEVICE
+import com.custom.app.util.Constant.KEY_DEVICE_NAME
+import com.custom.app.util.Constant.KEY_IGNORE_VOLUME
+import com.custom.app.util.Constant.KEY_NOTIFICATION
+import com.custom.app.util.Constant.KEY_PERMISSION
+import com.custom.app.util.Constant.KEY_REBOOT_ENABLED
+import com.custom.app.util.Constant.KEY_RESET
+import com.custom.app.util.Constant.KEY_SERVICE_ENABLED
+import com.custom.app.util.Constant.KEY_UUID
+import com.custom.app.util.Constant.KEY_VERSION
+import com.custom.app.util.Constant.NOTIFICATION_STATUS_CHANNEL
 import com.custom.app.util.SpannyText
 import com.custom.app.util.SpannyTypeface
 import dagger.hilt.android.AndroidEntryPoint
@@ -80,7 +90,7 @@ class SettingFragment : PreferenceFragmentCompat(), SettingManager.ChangeListene
                 settings.deviceName(newValue.toString())
                 true
             } else {
-                AlertUtil.showToast(context, "Invalid name!")
+                AlertUtil.showToast(requireContext(), "Invalid name!")
                 false
             }
         }
@@ -92,18 +102,18 @@ class SettingFragment : PreferenceFragmentCompat(), SettingManager.ChangeListene
                 settings.uuId(uuId)
                 true
             } catch (e: Exception) {
-                AlertUtil.showToast(context, "Invalid format!")
+                AlertUtil.showToast(requireContext(), "Invalid format!")
                 false
             }
         }
 
         resetPreference.setOnPreferenceClickListener {
             AlertUtil.showActionAlertDialog(
-                context,
+                requireContext(),
                 getString(R.string.msg_reset_default_confirm),
                 getString(R.string.btn_cancel), getString(R.string.btn_yes)
             ) { _, _ ->
-                AlertUtil.showToast(context, "Reset to default!")
+                AlertUtil.showToast(requireContext(), "Reset to default!")
                 AutoPauseService.stop(requireContext())
                 settings.clear()
                 callback?.onRestartApp()
