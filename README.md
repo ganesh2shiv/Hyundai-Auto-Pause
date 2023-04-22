@@ -18,8 +18,11 @@ It works by establishing a connection with the car's infotainment system using t
 ## To-do
 
 - [x] Test on Kia Sonet
+- [ ] Test on Kia Seltos
+- [x] Test on Hyundai i10
 - [x] Test on Hyundai i20
-- [x] Test on Hyundai Grand i10 nios
+- [ ] Test on Hyundai Verna
+- [ ] Test on Hyundai Creta
 - [ ] Test on other Hyundai/Kia models
 
 ## Contribute
