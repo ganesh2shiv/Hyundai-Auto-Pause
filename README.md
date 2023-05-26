@@ -1,10 +1,10 @@
-# Hyundai Auto Pause [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+# Auto Pause (Hyundai & Kia) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 <img align="right" height="96px" src="app/src/main/ic_launcher-web.png">
 
-Do you miss the pause button on your Hyundai/Kia car's steering? This android app enables the existing mute button to also work as pause button while playing music on Android Auto.
+Do you miss the pause button on your Hyundai / Kia car's steering? This app enables the existing mute button on the steering to also work as pause button while playing music on Android Auto. It works by establishing a connection with the car's infotainment system using the classic bluetooth (not BLE) and observes the volume change/mute events.
 
-It works by establishing a connection with the car's infotainment system using the classic bluetooth (not BLE) and observes the volume change/mute events.
+Now enjoy a seamless and convenient experience while listening to your favorite playlists, audiobooks, and podcasts during your long drives.
 
 [Download the latest release](https://github.com/ganesh2shiv/Hyundai-Auto-Pause/releases/latest)
 
