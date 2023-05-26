@@ -77,7 +77,7 @@
             android:title="@string/pref_about_view_project">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://github.com/ganesh2shiv/hyundai-auto-pause" />
+                android:data="https://github.com/ganesh2shiv/auto-pause" />
         </Preference>
 
         <Preference
@@ -85,7 +85,7 @@
             android:title="@string/pref_about_report_issue">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://github.com/ganesh2shiv/hyundai-auto-pause/issues/new" />
+                android:data="https://github.com/ganesh2shiv/auto-pause/issues/new" />
         </Preference>
 
         <Preference

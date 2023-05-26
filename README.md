@@ -6,7 +6,7 @@ Do you miss the pause button on your Hyundai / Kia car's steering? This app enab
 
 Now enjoy a seamless and convenient experience while listening to your favorite playlists, audiobooks, and podcasts during your long drives.
 
-[Download the latest release](https://github.com/ganesh2shiv/Hyundai-Auto-Pause/releases/latest)
+[Download the latest release](https://github.com/ganesh2shiv/auto-pause/releases/latest)
 
 [<img src="/art/00.png">](https://play.google.com/store/apps/details?id=com.custom.app.autopause)
 
