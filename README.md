@@ -8,6 +8,8 @@ It works by establishing a connection with the car's infotainment system using t
 
 [Download the latest release](https://github.com/ganesh2shiv/Hyundai-Auto-Pause/releases/latest)
 
+[<img src="/art/00.png">](https://play.google.com/store/apps/details?id=com.custom.app.autopause)
+
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/ganesh2shiv)
 
 ## Screenshots
